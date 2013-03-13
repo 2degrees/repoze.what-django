@@ -13,7 +13,7 @@
 #
 ##############################################################################
 
-from django.conf.urls.defaults import *
+from django.conf.urls import *
 
 from tests.fixtures.sampledjango.app1 import urls as app1_urls
 from tests.fixtures.sampledjango.app2 import urls as app2_urls

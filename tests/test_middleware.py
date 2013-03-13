@@ -239,9 +239,9 @@ class TestAuthorizationEnforcement(object):
         eq_(self.log_fixture.handler.messages['debug'][0],
             "Authorization checks disabled for media file at /media/photo.jpg")
     
-    def test_middleware_skips_media_admin_dir(self):
-        """The middleware must do nothing in the media admin directory."""
-        environ = {'PATH_INFO': "/admin-media/photo"}
+    def test_middleware_skips_static_files(self):
+        """The middleware must do nothing for static files."""
+        environ = {'PATH_INFO': "/static/photo"}
         request = Request(environ, make_user(None))
         response = self.middleware.process_view(request, object(), (), {})
         eq_(response, None)
@@ -252,7 +252,7 @@ class TestAuthorizationEnforcement(object):
         eq_(len(self.log_fixture.handler.messages['warning']), 0)
         eq_(len(self.log_fixture.handler.messages['debug']), 1)
         eq_(self.log_fixture.handler.messages['debug'][0],
-            "Authorization checks disabled for media file at /admin-media/photo")
+            "Authorization checks disabled for media file at /static/photo")
 
 
 class TestAuthorizationDeniedInView(object):

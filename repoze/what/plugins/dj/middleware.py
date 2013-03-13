@@ -157,7 +157,7 @@ class RepozeWhatMiddleware(object):
         
         """
         if (request.path.startswith(settings.MEDIA_URL) or
-            request.path.startswith(settings.ADMIN_MEDIA_PREFIX)):
+            request.path.startswith(settings.STATIC_URL)):
             _LOGGER.debug("Authorization checks disabled for media file at %s",
                           request.environ['PATH_INFO'])
             return
